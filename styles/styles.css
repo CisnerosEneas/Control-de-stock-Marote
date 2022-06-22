@@ -1,0 +1,23 @@
+.tittle{
+	font-size:1.2rem;
+	font-weight: bold;
+}
+
+.icons{
+	border-radius:20px;
+	margin:1.5%;
+}
+
+#icons:hover{
+	width:190px;
+	height:190px;
+	box-shadow:0 0 15px black;
+}
+
+.paddingdiv{
+	padding-top:100px;
+}
+
+.paddingh2{
+	padding-top:40px;
+}
