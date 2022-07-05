@@ -20,7 +20,9 @@ create table proveedores(
 	mail varchar(320) not null,
 	web varchar(320) not null,
 	contacto varchar(60) not null,
-	provee varchar(20) not null
+	provee varchar(20) not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 /*material*/
@@ -38,6 +40,8 @@ create table mocomprado(
 	precio float(6) not null,
 	cantidad int(4) not null,
 	fecha date not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia),
 	foreign key (id_proveedor) references proveedores(id_proveedor)
 );
@@ -50,6 +54,8 @@ create table mpcomprado(
 	precio float(6) not null,
 	cantidad int(4) not null,
 	fecha date not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia),
 	foreign key (id_proveedor) references proveedores(id_proveedor)
 );
@@ -62,6 +68,8 @@ create table mproducido(
 	cantidad float(6) not null,
 	estado varchar(40) not null,
 	fecha date not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia)
 );
 
@@ -72,6 +80,8 @@ create table mbruto(
 	color varchar(50) not null,
 	tipo_plastico varchar(50) not null,
 	cantidad float(6) not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia)
 );
 
@@ -89,6 +99,8 @@ create table inyeccion(
 	cantidad int(4) not null,
 	fecha date not null,
 	material_utilizado varchar(320) not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
 );
 
@@ -100,6 +112,8 @@ create table rotomoldeo(
 	cantidad int(4) not null,
 	fecha date not null,
 	material_utilizado varchar(200) not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
 );
 
@@ -110,6 +124,8 @@ create table triturado(
 	tipo_de_plastico varchar(60) not null,
 	color varchar(50) not null,
 	fecha date not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
 );
 
@@ -121,6 +137,8 @@ create table productos(
 	nombre varchar(60) not null,
 	color varchar(50) not null,
 	stock_disponible int(4) not null,
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
 );
 
