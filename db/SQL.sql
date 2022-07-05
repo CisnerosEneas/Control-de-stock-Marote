@@ -137,6 +137,7 @@ create table productos(
 	nombre varchar(60) not null,
 	color varchar(50) not null,
 	stock_disponible int(4) not null,
+	descripcion varchar(320),
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
