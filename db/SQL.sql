@@ -7,6 +7,7 @@ drop table if exists mbruto;
 drop table if exists material;
 drop table if exists proveedores;
 drop table if exists productos;
+drop table if exists categoria;
 drop table if exists inyeccion;
 drop table if exists rotomoldeo;
 drop table if exists triturado;
@@ -130,9 +131,15 @@ create table triturado(
 );
 
 /* productos */
+create table categoria(
+	id_categoria int unsigned auto_increment primary key,
+	nombre_cat varchar(70) not null
+);
+
 create table productos(
 	id_producto int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
+	id_categoria int unsigned,
 	precio float(6) not null,
 	nombre varchar(150) not null,
 	color varchar(70) not null,
@@ -140,7 +147,8 @@ create table productos(
 	descripcion varchar(320),
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
+	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado),
+	foreign key (id_categoria) references categoria(id_categoria)
 );
 
 /*inserts*/
@@ -157,3 +165,14 @@ insert into material(area) values
 	('Comprado'),
 	('Producido'),
 	('Bruto');
+
+insert into categoria(nombre_cat) values
+	('Llaveros'),
+	('Contenedores'),
+	('Envases'),
+	('Soportes'),
+	('Baño'),
+	('Ciclismo'),
+	('Macetas'),
+	('Mascotas'),
+	('Tachos');
