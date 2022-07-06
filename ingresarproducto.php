@@ -48,6 +48,22 @@
 					<h2>Ingresar productos</h2>
 					<form method="POST" action="subirproducto.php">
 						<fieldset>
+							Categoria
+							<select name="b">
+								<option selected hidden disabled> Seleccione una categoria</option>
+								<?php
+									include_once "db/conexion.php";
+									$sql_leer='SELECT * FROM categoria';
+									$gsent = $cnn->prepare($sql_leer);
+									$gsent->execute();
+									$resultados = $gsent->fetchAll();
+								    foreach ($resultados as $dato): 
+								?>
+								<option value="<?php echo $dato['id_categoria']; ?>"><?php echo $dato['nombre_cat']; ?></option>
+								<?php endforeach; ?>
+							</select>
+						</fieldset>
+						<fieldset>
 							Nombre<input type="text" name="name">
 						</fieldset>
 						<fieldset>

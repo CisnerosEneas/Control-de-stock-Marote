@@ -60,6 +60,22 @@
 					<h2>Editar productos</h2>
 					<form method="GET" action="editarproducto.php">
 						<fieldset>
+							Categoria
+							<select name="b" value="<?php echo $resultado_unico['id_categoria']; ?>">
+								<option selected hidden value="<?php echo $resultado_unico['id_categoria']; ?>" > Seleccione una categoria</option>
+								<?php
+									include_once "db/conexion.php";
+									$leer_sql='SELECT * FROM categoria';
+									$gsent = $cnn->prepare($leer_sql);
+									$gsent->execute();
+									$resultaditos = $gsent->fetchAll();
+								    foreach ($resultaditos as $datito): 
+								?>
+								<option value="<?php echo $datito['id_categoria']; ?>"><?php echo $datito['nombre_cat']; ?></option>
+								<?php endforeach; ?>
+							</select>
+						</fieldset>
+						<fieldset>
 							Nombre<input type="text" name="name" value="<?php echo $resultado_unico['nombre']?>">
 						</fieldset>
 						<fieldset>
@@ -68,7 +84,7 @@
 						<fieldset>
 							Metodo de produccion
 							<select name="a" value="<?php echo $resultado_unico['id_tipo_procesado']?>">
-								<option selected hidden disabled> Seleccione un metodo de produccion</option>
+								<option selected hidden value="<?php echo $resultado_unico['id_tipo_procesado']?>"> Seleccione un metodo de produccion</option>
 								<option value="2">Inyeccion</option>
 								<option value="1">Rotomoldeo</option>
 							</select>
@@ -92,6 +108,7 @@
 				<table class="col table-striped">
 					<thead>
 						<tr>
+							<th>Categoria</th>
 							<th>Nombre</th>
 							<th>Color</th>
 							<th>Metodo de produccion</th>
@@ -112,6 +129,40 @@
 						    foreach ($resultados as $dato):
 						?>
 					    <tr>
+					    	<td>
+					    		<?php
+					    			switch ($dato['id_categoria'])
+					    			{
+					    				case '1':
+					    					echo "Llaveros";
+					    					break;
+				    					case '2':
+					    					echo "Contenedores";
+					    					break;
+						    			case '3':
+						    					echo "Envases";
+						    					break;
+						    			case '4':
+					    					echo "Soportes";
+					    					break;
+				    					case '5':
+					    					echo "Baño";
+					    					break;
+						    			case '6':
+						    					echo "Ciclismo";
+						    					break;
+						    			case '7':
+					    					echo "Macetas";
+					    					break;
+				    					case '8':
+					    					echo "Mascotas";
+					    					break;
+					    				case '9':
+					    					echo "Tachos";
+					    					break;
+					    			}
+					    		?>
+					    	</td>
 						    <td><?php echo $dato['nombre']; ?></td>
 						    <td><?php echo $dato['color']; ?></td>
 						    <td>
