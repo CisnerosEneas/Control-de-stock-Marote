@@ -149,7 +149,8 @@ create table productos(
 insert into produccion(area) values 
 	('Rotomoldeo'),
 	('Inyeccion'),
-	('Triturado');
+	('Triturado'),
+	('Otro');
 
 /*material*/
 insert into material(area) values 
