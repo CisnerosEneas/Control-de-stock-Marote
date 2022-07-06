@@ -97,6 +97,7 @@
 							<th>Metodo de produccion</th>
 							<th>Precio</th>
 							<th>Cantidad disp.</th>
+							<th>Descrip.</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
 						</tr>
@@ -123,6 +124,14 @@
 							</td>
 						    <td>$<?php echo $dato['precio']; ?></td>
 						    <td><?php echo $dato['stock_disponible']; ?></td>
+						    <td>
+						    	<?php
+							    	if($dato['descripcion']==null)
+							    		{echo 'Sin descripcion';}
+								    else
+								    	{echo $dato['descripcion'];}
+								?>
+								</td>
 						    <td><a href="verproducto.php?id=<?php; ?>&id=<?php echo $dato['id_producto']; ?>"><i class="bi bi-pencil-square"></i></a></td>
 						    <td><a href="eliminarproducto.php?id=<?php echo $dato['id_producto']; ?>" onclick="return confirmar()"><i class="bi bi-trash"></i></a></td>
 					    </tr>
