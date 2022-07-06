@@ -59,6 +59,7 @@
 								<option selected hidden disabled> Seleccione un metodo de produccion</option>
 								<option value="2">Inyeccion</option>
 								<option value="1">Rotomoldeo</option>
+								<option value="4">Otro</option>
 							</select>
 						</fieldset>
 						<fieldset>
@@ -66,6 +67,9 @@
 						</fieldset>
 						<fieldset>
 							Cantidad disp.<input type="number" name="stock">
+						</fieldset>
+						<fieldset>
+							Descripcion(opcional)<input type="text" name="descripcion">
 						</fieldset>
 						<fieldset>
 							<input type="submit">

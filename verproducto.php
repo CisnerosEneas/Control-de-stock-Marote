@@ -119,7 +119,12 @@
 								    if($dato['id_tipo_procesado']==1)
 								    	{echo 'Rotomoldeo';}
 								    else
-							    		{echo 'Inyeccion';}
+							    		{
+							    			if($dato['id_tipo_procesado']==4)
+							    				{echo 'Otro';}
+							    			else
+							    				{echo 'Inyeccion';}
+							    		}
 								?>
 							</td>
 						    <td>$<?php echo $dato['precio']; ?></td>
