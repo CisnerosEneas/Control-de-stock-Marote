@@ -10,16 +10,14 @@
     	<link rel="stylesheet" href="styles/styles.css" type="text/css">
 	</head>
 	<body class="bg-dark text-white">
-		<script type="text/javascript" src="script/jquery.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
 		<main>
 			<header>
 				<nav class="navbar navbar-expand-lg navbar-light bg-primary">
 					<a class="navbar-brand">
 						<img src="img/logo.jpg" width="55" height="50" class="d-inline-block align-top rounded-lg" alt="">
 					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar
+					Nav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 					<div class="collapse navbar-collapse" id="navbarNav">
@@ -41,12 +39,12 @@
 							</li>
 						</ul>
 					</div>
-					<div class="d-flex d-row-reverse">
+					<!-- <div class="d-flex d-row-reverse"> !-->
 						<!-- if todo bien !-->
 						<!-- <i class="bi bi-check-circle-fill"></i> !-->
 						<!-- else hay un problema ej. falta de stock !-->
 						<!-- <i class="bi bi-exclamation-circle-fill"></i> !-->
-					</div>
+					<!-- </div> !-->
 				</nav>
 			</header>
 			<article class="col">

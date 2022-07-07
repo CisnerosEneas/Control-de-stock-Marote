@@ -90,10 +90,19 @@
 							</select>
 						</fieldset>
 						<fieldset>
-							Precio<input type="number" name="price" step="0.01" min="0" value="<?php echo $resultado_unico['precio']?>">
+							Precio de lista<input type="number" name="price" step="0.01" min="0" value="<?php echo $resultado_unico['precio_de_lista']?>">
+						</fieldset>
+						<fieldset>
+							Cantidad mayorista(opcional)<input type="number" name="cantminmayorist" value="<?php echo $resultado_unico['cantidad_min_mayorista']?>">
+						</fieldset>
+						<fieldset>
+							Precio mayorista(opcional)<input type="number" name="preciominmayorist" step="0.01" min="0" value="<?php echo $resultado_unico['precio_mayorista']?>">
 						</fieldset>
 						<fieldset>
 							Cantidad disp.<input type="number" name="stock" value="<?php echo $resultado_unico['stock_disponible']?>">
+						</fieldset>
+						<fieldset>
+							Descripcion(opcional)<input type="text" name="descripcion" value="<?php echo $resultado_unico['descripcion']?>">
 						</fieldset>
 						<fieldset>
 							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_producto']?>">
@@ -112,7 +121,9 @@
 							<th>Nombre</th>
 							<th>Color</th>
 							<th>Metodo de produccion</th>
-							<th>Precio</th>
+							<th>Precio de lista</th>
+							<th>Precio mayorista</th>
+							<th>Cant. min. mayorista</th>
 							<th>Cantidad disp.</th>
 							<th>Descrip.</th>
 							<th>Editar</th>
@@ -167,18 +178,23 @@
 						    <td><?php echo $dato['color']; ?></td>
 						    <td>
 							    <?php
-								    if($dato['id_tipo_procesado']==1)
-								    	{echo 'Rotomoldeo';}
-								    else
-							    		{
-							    			if($dato['id_tipo_procesado']==4)
-							    				{echo 'Otro';}
-							    			else
-							    				{echo 'Inyeccion';}
-							    		}
+							    	switch ($dato['id_tipo_procesado'])
+					    			{
+					    				case '1':
+					    					echo "Rotomoldeo";
+					    					break;
+				    					case '2':
+					    					echo "Inyeccion";
+					    					break;
+						    			case '4':
+						    					echo "Otro";
+						    					break;
+					    			}
 								?>
 							</td>
-						    <td>$<?php echo $dato['precio']; ?></td>
+						    <td>$<?php echo $dato['precio_de_lista']; ?></td>
+						    <td>$<?php echo $dato['precio_mayorista']; ?></td>
+						    <td><?php echo $dato['cantidad_min_mayorista']; ?></td>
 						    <td><?php echo $dato['stock_disponible']; ?></td>
 						    <td>
 						    	<?php

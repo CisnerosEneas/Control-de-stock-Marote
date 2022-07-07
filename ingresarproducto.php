@@ -79,7 +79,13 @@
 							</select>
 						</fieldset>
 						<fieldset>
-							Precio<input type="number" name="price" step="0.01" min="0">
+							Precio de lista<input type="number" name="price" step="0.01" min="0">
+						</fieldset>
+						<fieldset>
+							Cantidad mayorista(opcional)<input type="number" name="cantminmayorist">
+						</fieldset>
+						<fieldset>
+							Precio mayorista(opcional)<input type="number" name="preciominmayorist" step="0.01" min="0">
 						</fieldset>
 						<fieldset>
 							Cantidad disp.<input type="number" name="stock">
