@@ -4,5 +4,5 @@
 	$borrarsql='delete from proveedores where id_proveedor=?';
 	$dssf=$cnn->prepare($borrarsql);
 	$dssf->execute(array($de));
-	header('location:verproveedor.php');
+	header('location:verproveedores.php');
 ?>

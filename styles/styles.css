@@ -1,6 +1,27 @@
+/* Navbar */
+
 .tittle{
 	font-size:1.2rem;
 	font-weight: bold;
+}
+
+.navalert{
+	border-style:none;
+	background-color:#007BFF;
+}
+
+.navalerticon{
+	font-size:1.5rem;
+}
+
+/* Body */
+
+.paddingdiv{
+	padding-top:100px;
+}
+
+.paddingh2{
+	padding-top:40px;
 }
 
 .icons{
@@ -12,12 +33,4 @@
 	width:190px;
 	height:190px;
 	box-shadow:0 0 15px black;
-}
-
-.paddingdiv{
-	padding-top:100px;
-}
-
-.paddingh2{
-	padding-top:40px;
 }

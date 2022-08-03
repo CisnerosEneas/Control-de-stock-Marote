@@ -6,7 +6,11 @@ drop table if exists mproducido;
 drop table if exists mbruto;
 drop table if exists material;
 drop table if exists proveedores;
+drop table if exists productosalmacen;
+drop table if exists precioslista;
+drop table if exists preciosmayorista;
 drop table if exists productos;
+drop table if exists cantmayorista;
 drop table if exists categoria;
 drop table if exists inyeccion;
 drop table if exists rotomoldeo;
@@ -38,7 +42,7 @@ create table mocomprado(
 	id_procedencia int unsigned,
 	id_proveedor int unsigned,
 	material varchar(50) not null,
-	precio float(6) not null,
+	precio float(9) not null,
 	cantidad int(4) not null,
 	fecha date not null,
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -52,7 +56,7 @@ create table mpcomprado(
 	id_procedencia int unsigned,
 	id_proveedor int unsigned,
 	estado varchar(40) not null,
-	precio float(6) not null,
+	precio float(9) not null,
 	cantidad int(4) not null,
 	fecha date not null,
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -66,7 +70,7 @@ create table mproducido(
 	id_procedencia int unsigned,
 	tipo_molienda varchar(50) not null,
 	tipo_plastico varchar(50) not null,
-	cantidad float(6) not null,
+	cantidad float(9) not null,
 	estado varchar(40) not null,
 	fecha date not null,
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -77,10 +81,10 @@ create table mproducido(
 create table mbruto(
 	id_materia int unsigned auto_increment primary key,
 	id_procedencia int unsigned,
-	forma varchar(70) not null,
-	color varchar(70) not null,
+	forma varchar(90) not null,
+	color varchar(90) not null,
 	tipo_plastico varchar(50) not null,
-	cantidad float(6) not null,
+	cantidad float(9) not null,
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia)
@@ -95,7 +99,7 @@ create table produccion(
 create table inyeccion(
 	id_inyeccion int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
-	molde varchar(70) not null,
+	molde varchar(90) not null,
 	duracion time not null,
 	cantidad int(4) not null,
 	fecha date not null,
@@ -108,7 +112,7 @@ create table inyeccion(
 create table rotomoldeo(
 	id_rotomoldeo int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
-	molde varchar(70) not null,
+	molde varchar(90) not null,
 	duracion time not null,
 	cantidad int(4) not null,
 	fecha date not null,
@@ -121,9 +125,9 @@ create table rotomoldeo(
 create table triturado(
 	id_triturado int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
-	cantidad float(6) not null, 
+	cantidad float(9) not null, 
 	tipo_de_plastico varchar(60) not null,
-	color varchar(70) not null,
+	color varchar(90) not null,
 	fecha date not null,
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -133,35 +137,68 @@ create table triturado(
 /* productos */
 create table categoria(
 	id_categoria int unsigned auto_increment primary key,
-	nombre_cat varchar(70) not null
+	nombre_cat varchar(90) not null
+);
+
+create table cantmayorista(
+	id_cantmayorista int unsigned auto_increment primary key,
+	cantidad varchar(15),
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 create table productos(
 	id_producto int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
 	id_categoria int unsigned,
-	precio float(6) not null,
-	nombre varchar(150) not null,
-	color varchar(70) not null,
-	stock_disponible int(4) not null,
-	descripcion varchar(320),
+	nomproducto varchar(150) not null,
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado),
 	foreign key (id_categoria) references categoria(id_categoria)
 );
 
+create table precioslista(
+	id_preciol int unsigned auto_increment primary key,
+	id_producto int unsigned,
+	preciol float(9),
+	foreign key (id_producto) references productos(id_producto)
+);
+
+create table preciosmayorista(
+	id_preciom int unsigned auto_increment primary key,
+	id_producto int unsigned,
+	id_cantmayorista int unsigned,
+	preciom float(9),
+	foreign key (id_producto) references productos(id_producto),
+	foreign key (id_cantmayorista) references cantmayorista(id_cantmayorista)
+);	
+
+create table productosalmacen(
+	id_stock int unsigned auto_increment primary key,
+	id_producto int unsigned,
+	id_categoria int unsigned,
+	nombre varchar(150) not null,
+	color varchar(90) not null,
+	stock_disponible int(4) not null,
+	descripcion varchar(320),
+	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  	foreign key (id_categoria) references categoria(id_categoria),
+  	foreign key (id_producto) references productos(id_producto)
+);
+
 /*inserts*/
 
 /*produccion*/
-insert into produccion(area) values 
+insert into produccion(area) values
 	('Rotomoldeo'),
 	('Inyeccion'),
 	('Triturado'),
 	('Otro');
 
 /*material*/
-insert into material(area) values 
+insert into material(area) values
 	('Comprado'),
 	('Producido'),
 	('Bruto');
@@ -172,7 +209,28 @@ insert into categoria(nombre_cat) values
 	('Envases'),
 	('Soportes'),
 	('Baño'),
-	('Ciclismo'),
+	('Vialidad'),
 	('Macetas'),
 	('Mascotas'),
-	('Tachos');
+	('Cestos'),
+	('Asientos');
+
+insert into cantmayorista(cantidad) values
+	('5'),
+	('5 o mas'),
+	('10'),
+	('10 o mas'),
+	('30'),
+	('30 o mas'),
+	('50'),
+	('50 o mas'),
+	('100'),
+	('100 o mas'),
+	('200'),
+	('200 o mas'),
+	('500'),
+	('500 o mas'),
+	('50 a 100'),
+	('50 a 500'),
+	('100 a 500'),
+	(null);
