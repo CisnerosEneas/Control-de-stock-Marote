@@ -93,6 +93,17 @@
 									</select>
 								</fieldset>
 								<fieldset>
+									Tipo de plastico
+									<select name="tipop">
+										<option hidden disabled selected>Tipo de plastico</option>
+										<option value="polietileno">Polietileno</option>
+										<option value="polipropileno">Polipropileno</option>
+									</select>
+								</fieldset>
+								<fieldset>
+									color<input type="text" name="colorp">
+								</fieldset>
+								<fieldset>
 									Precio $<input type="number" name="precio" step="0.01" min="0">
 								</fieldset>
 								<fieldset>

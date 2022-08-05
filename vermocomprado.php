@@ -57,7 +57,7 @@
 						</fieldset>
 					</form>
 					<?php endif ?>
-					<h2>Material comprado</h2>
+					<h2>Insumos comprados</h2>
 				</center>
 				<table class="col table-striped">
 					<thead>

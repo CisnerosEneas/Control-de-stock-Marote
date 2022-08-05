@@ -10,7 +10,8 @@
 						<div>
 							<a href="index.php"><img id="icons" class="icons" src="img/volver.png"></a>
 							<a href="ingresarproducto.php"><img id="icons" class="icons" src="img/añadir.png"></a>
-							<a href="verproducto.php"><img id="icons" class="icons" src="img/ver.png"></a>
+							<a href="verproducto.php"><img id="icons" class="icons" src="img/productos.png"></a>
+							<a href="verstock.php"><img id="icons" class="icons" src="img/stock.png"></a>
 						</div>
 					</div>
 				</center>

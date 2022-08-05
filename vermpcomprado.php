@@ -47,6 +47,16 @@
 							</select>
 						</fieldset>
 						<fieldset>
+							Tipo de plastico
+							<select name="tipop" value="<?php echo $resultado_unico['tipo_plastico']?>">
+								<option value="polietileno">Polietileno</option>
+								<option value="polipropileno">Polipropileno</option>
+							</select>
+						</fieldset>
+						<fieldset>
+							color<input type="text" name="colorp" value="<?php echo $resultado_unico['color']?>">
+						</fieldset>
+						<fieldset>
 							Precio $<input type="number" name="precio" step="0.01" min="0" value="<?php echo $resultado_unico['precio']?>">
 						</fieldset>
 						<fieldset>
@@ -70,6 +80,8 @@
 						<tr>
 							<th>Proveedor</th>
 							<th>Estado</th>
+							<th>Tipo de plastico</th>
+							<th>Color</th>
 							<th>Precio</th>
 							<th>cantidad</th>
 							<th>Fecha de compra (A/M/D)</th>
@@ -87,8 +99,19 @@
 						    foreach ($resultados as $dato):
 						?>
 					    <tr>
-						    <td><?php echo $dato ['id_proveedor'] ?></td>
+					    	<?php
+							include_once "db/conexion.php";
+								$sql_leer1="SELECT mpcomprado.id_compra, mpcomprado.id_proveedor, proveedores.nombre, proveedores.id_proveedor FROM mpcomprado,proveedores WHERE mpcomprado.id_compra='$dato[id_compra]'";
+								$gsent1 = $cnn->prepare($sql_leer1);
+								$gsent1->execute();
+								$resultados1 = $gsent1->fetchAll();
+						    	foreach ($resultados1 as $dato1):
+							?>
+						    <td><?php echo $dato1 ['nombre'] ?></td>
+							<?php endforeach; ?>
 						    <td><?php echo $dato['estado']; ?></td>
+						    <td><?php echo $dato['tipo_plastico']; ?></td>
+						    <td><?php echo $dato['color']; ?></td>
 						    <td>$<?php echo $dato['precio']; ?></td>
 						    <td><?php echo $dato['cantidad']; ?></td>
 						    <td><?php echo $dato['fecha']; ?></td>

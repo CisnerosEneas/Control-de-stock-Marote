@@ -21,7 +21,7 @@
                         </fieldset>
                         <fieldset>
                             Pagina WEB:
-                            <input type="url" name="web" required>
+                            <input type="url" name="web">
                         </fieldset>
                         <fieldset>
                             Contacto:

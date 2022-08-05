@@ -87,7 +87,7 @@
 							<fieldset>
 								Producto
 								<select name="a">
-									<option selected hidden disabled> Seleccione tipo de producto</option>
+									<option selected hidden disabled value="0"> Seleccione tipo de producto</option>
 									<?php
 										$sql_leer='SELECT distinct * FROM productos';
 										$gsent = $cnn->prepare($sql_leer);
