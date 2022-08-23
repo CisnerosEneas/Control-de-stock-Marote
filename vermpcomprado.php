@@ -23,6 +23,7 @@
 						<fieldset>
 							Proveedor
 							<select name="b" value="<?php echo $resultado_unico['id_proveedor']?>">
+								<option selected hidden disabled>Proveedores</option>
 							<?php
 								include_once "db/conexion.php";
 								$sql_leer='SELECT * FROM proveedores WHERE provee=1';
@@ -83,7 +84,7 @@
 							<th>Tipo de plastico</th>
 							<th>Color</th>
 							<th>Precio</th>
-							<th>cantidad</th>
+							<th>Cantidad (KG)</th>
 							<th>Fecha de compra (A/M/D)</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
@@ -92,7 +93,7 @@
 					<tbody>
 						<?php
 							include_once "db/conexion.php";
-							$sql_leer='SELECT * FROM mpcomprado';
+							$sql_leer='SELECT id_compra,estado,tipo_plastico,color,precio,cantidad,fecha FROM mpcomprado';
 							$gsent = $cnn->prepare($sql_leer);
 							$gsent->execute();
 							$resultados = $gsent->fetchAll();
@@ -101,20 +102,48 @@
 					    <tr>
 					    	<?php
 							include_once "db/conexion.php";
-								$sql_leer1="SELECT mpcomprado.id_compra, mpcomprado.id_proveedor, proveedores.nombre, proveedores.id_proveedor FROM mpcomprado,proveedores WHERE mpcomprado.id_compra='$dato[id_compra]'";
+								$sql_leer1="SELECT mpcomprado.id_compra, mpcomprado.id_proveedor, proveedores.nombre, proveedores.id_proveedor FROM mpcomprado,proveedores WHERE proveedores.id_proveedor=mpcomprado.id_proveedor and mpcomprado.id_compra='$dato[id_compra]'";
 								$gsent1 = $cnn->prepare($sql_leer1);
 								$gsent1->execute();
 								$resultados1 = $gsent1->fetchAll();
 						    	foreach ($resultados1 as $dato1):
 							?>
-						    <td><?php echo $dato1 ['nombre'] ?></td>
-							<?php endforeach; ?>
+						    <td><?php echo $dato1['nombre']; ?></td>
+							<?php
+								endforeach;
+								if ($resultados1==null)
+								{
+									echo '<td>Sin especificar</td>';
+								}
+							?>
 						    <td><?php echo $dato['estado']; ?></td>
 						    <td><?php echo $dato['tipo_plastico']; ?></td>
 						    <td><?php echo $dato['color']; ?></td>
-						    <td>$<?php echo $dato['precio']; ?></td>
+						    <td>
+						    	<?php
+						    		if($dato['precio']!=0)
+						    		{
+						    			echo '$'.$dato['precio'];
+						    		}
+						    		else
+						    		{
+						    			echo 'Sin especificar';
+						    		}
+								?>
+							</td>
 						    <td><?php echo $dato['cantidad']; ?></td>
-						    <td><?php echo $dato['fecha']; ?></td>
+						    <td>
+						    	<?php
+						    		if($dato['fecha']!=null)
+						    		{
+						    			echo $dato['fecha'];
+						    		}
+						    		else
+						    		{
+						    			echo 'Sin especificar';
+						    		}
+								?>
+							</td>
 						    <td><a href="vermpcomprado.php?id=<?php echo $dato['id_compra']; ?>"><i class="bi bi-pencil-square"></i></a></td>
 						    <td><a href="eliminarmpcomprado.php?id=<?php echo $dato['id_compra']; ?>" onclick="confirmar()"><i class="bi bi-trash"></i></a></td>
 					    </tr>

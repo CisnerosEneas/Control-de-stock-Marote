@@ -4,10 +4,11 @@
 	$id_procedencia=2;
 	$tipo=$_POST['tipo'];
 	$cantidad=$_POST['cantidad'];
+	$color=$_POST['color'];
 	$estado=$_POST['estado'];
 	$fecha=$_POST['fecha'];
-	$a=$cnn->prepare("INSERT INTO mproducido(id_procedencia,tipo_molienda,tipo_plastico,cantidad,estado,fecha) VALUES (?,?,?,?,?,?);");
-	$a->execute(array($id_procedencia,$molienda,$tipo,$cantidad,$estado,$fecha));
+	$a=$cnn->prepare("INSERT INTO mproducido(id_procedencia,tipo_molienda,tipo_plastico,cantidad,color,estado,fecha) VALUES (?,?,?,?,?,?,?);");
+	$a->execute(array($id_procedencia,$molienda,$tipo,$cantidad,$color,$estado,$fecha));
 	$cnn=null;
 	header('location:ingmaterial.php');
 ?>

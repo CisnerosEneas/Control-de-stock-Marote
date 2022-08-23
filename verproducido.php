@@ -64,9 +64,10 @@
 						<tr>
 							<th>Tipo de molienda</th>
 							<th>Tipo de plastico</th>
-							<th>Cantidad</th>
+							<th>Cantidad (KG)</th>
 							<th>Estado</th>
-							<th>Fecha (A/M/D)</th>
+							<th>Color</th>
+							<th>Fecha de produccion (A/M/D)</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
 						</tr>
@@ -85,7 +86,19 @@
 						    <td><?php echo $dato['tipo_plastico']; ?></td>
 						    <td><?php echo $dato['cantidad']; ?></td>
 						    <td><?php echo $dato['estado']; ?></td>
-						    <td><?php echo $dato['fecha']; ?></td>
+						    <td><?php echo $dato['color']; ?></td>
+						    <td>
+						    	<?php
+						    		if($dato['fecha']!="0000-00-00")
+						    		{
+						    			echo $dato['fecha'];
+						    		}
+						    		else
+						    		{
+						    			echo 'Sin especificar';
+						    		}
+								?>
+							</td>
 						    <td><a href="verproducido.php?id=<?php; ?>&id=<?php echo $dato['id_producido']; ?>"><i class="bi bi-pencil-square"></i></a></td>
 						    <td><a href="eliminarmproducido.php?id=<?php echo $dato['id_producido']; ?>" onclick="confirmar()"><i class="bi bi-trash"></i></a></td>
 					    </tr>

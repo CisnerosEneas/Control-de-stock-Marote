@@ -39,6 +39,10 @@
 	                        <input type="text" name="contact" value="<?php echo $resultado_unico['contacto']?>">
 	                    </fieldset>
 	                    <fieldset>
+                            Direccion:
+                            <input type="text" name="direccion" value="<?php echo $resultado_unico['direccion']?>">
+                        </fieldset>
+	                    <fieldset>
 	                    	Seleccione que provee
 	                    	<select name="a" value="<?php echo $resultado_unico['provee']?>">
 	                    		<option disabled hidden selected>Seleccion</option>
@@ -64,6 +68,7 @@
 							<th>Mail</th>
 							<th>Web</th>
 							<th>Contacto</th>
+							<th>Direccion</th>
 							<th>Provee</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
@@ -80,10 +85,45 @@
 						?>
 					    <tr>
 						    <td><?php echo $dato['nombre']; ?></td>
-						    <td><?php echo $dato['telefono']; ?></td>
-						    <td><?php echo $dato['mail']; ?></td>
+						    <td>
+						    	<?php
+							    	if ($dato['telefono']==null) {
+							    		echo 'Sin especificar';
+							    	}
+							    	else
+							    	{
+							    		echo $dato['telefono'];
+							    	}
+						    	?>
+						    </td>
+						    <td>
+						    	<?php
+						    	if ($dato['mail']==null) {
+						    		echo 'Sin especificar/no tiene';
+						    	}
+						    	else
+						    	{
+						    		echo $dato['mail'];
+						    	}
+						    	?>	
+						    </td>
+						    <?php if($dato['web']!=null): ?>
 						    <td><a href="<?php echo $dato['web']; ?>"><?php echo $dato['web']; ?></a></td>
-						    <td><?php echo $dato['contacto']; ?></td>
+							<?php elseif ($dato['web']==null): ?>
+							<td>Sin especificar/no tiene</td>
+							<?php endif; ?>
+						    <td>
+						    	<?php
+						    		if ($dato['contacto']==null) {
+						    			echo 'Sin especificar';
+						    		}
+						    		else
+						    		{
+						    			echo $dato['contacto'];
+						    		}
+						    	?>	
+						    </td>
+						    <td><?php echo $dato['direccion']; ?></td>
 						    <td>
 						    	<?php
 						    		if ($dato['provee']==1)

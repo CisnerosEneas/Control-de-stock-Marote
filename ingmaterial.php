@@ -125,6 +125,7 @@
 								<fieldset>
 									Proveedor
 									<select name="b">
+										<option selected hidden disabled>Proveedores</option>
 									<?php
 										include_once "db/conexion.php";
 										$sql_leer='SELECT * FROM proveedores WHERE provee=2';
@@ -182,6 +183,9 @@
 							</fieldset>
 							<fieldset>
 								Cantidad<input type="number" name="cantidad" min="0">
+							</fieldset>
+							<fieldset>
+								color<input type="text" name="color">
 							</fieldset>
 							<fieldset>
 								Estado

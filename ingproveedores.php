@@ -28,6 +28,10 @@
                             <input type="text" name="contact" required>
                         </fieldset>
                         <fieldset>
+                            Direccion:
+                            <input type="text" name="direccion" required>
+                        </fieldset>
+                        <fieldset>
                         	Seleccione que provee
                         	<select name="a">
                         		<option disabled hidden selected>Seleccion</option>
