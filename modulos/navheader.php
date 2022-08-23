@@ -5,7 +5,7 @@
 		<main>
 			<header>
 				<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-					<a class="navbar-brand">
+					<a href="index.php" class="navbar-brand">
 						<img src="img/logo.jpg" width="55" height="50" class="d-inline-block align-top rounded-lg" alt="">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
