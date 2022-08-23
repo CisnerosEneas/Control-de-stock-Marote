@@ -270,12 +270,12 @@ INSERT INTO productosalmacen(id_producto,id_categoria,nombre,color,stock_disponi
 
 /*agregar direccion a tabla*/
 INSERT INTO proveedores(nombre,telefono,mail,web,contacto,direccion,provee,creada_el) VALUES
-	('PlasDream',91165639936,'julieta.sayago@outlook.com','https://www.facebook.com/Plasdream-104945598785023/','Mariel Bernal','Carlos guido spano 4449 1650 Billinghurst, Provincia de Buenos Aires, Argentina',1,NOW()),
+	('PlasDream',1165639936,'julieta.sayago@outlook.com','https://www.facebook.com/Plasdream-104945598785023/','Mariel Bernal','Carlos guido spano 4449 1650 Billinghurst, Provincia de Buenos Aires, Argentina',1,NOW()),
 	('Fundacion Garrahan',1149933938,'info@fundaciongarrahan.org','https://fundaciongarrahan.org.ar/','Patricia','Alcorta, Amancio Avenida 2690, C1437HTO CABA',1,NOW()),
 	('Ecotecnica del Pilar',1151824955,'ecotecnicadelpilar@hotmail.com','https://www.ecotecnicadelpilar.com.ar/','','Ruta 25, Km 11, Ramal Moreno-Pilar - Pilar (1629, B1629 Pilar, Provincia de Buenos Aires',1,NOW()),
 	('Industrias Plásticas Babylin',1147612843,'babylin.rotomoldeo@gmail.com','https://www.butacasbabylin.com/inicio','','BAN, Virrey Olaguer y Feliú 4090, B1605BAN Munro, Provincia de Buenos Aires',1,NOW()),
 	('Cooperativa Amanecer',1161147164,'coopamanecer@yahoo.com.ar','https://amanecer.coop.ar/','Alberto','EVR Sarandí Buenos Aires AR, Gral Deheza 1550, B1874',1,NOW()),
-	('Vitech Group',91128510210,'','','','Karina',1,NOW()),
+	('Vitech Group',1128510210,'','','Karina','',1,NOW()),
 	('Cooperativa El Alamo',1131191730,'coopelalamo_adm@gmail.com','https://www.facebook.com/alamocooperativa/','Pitu','Av. de los Constituyentes 6259, C1431FAA CABA',1,NOW()),
 	('Metalurgica Romagnoli',2344450030,'','http://www.metromagnoli.com.ar/','','B, RN205 Km 183, Saladillo',2,NOW()),
 	('Diego Coronel Servicios Industriales',2344450335,'','http://www.dc-si.com.ar/','','Ruta 205 km 181.1, B7260 Saladillo, Provincia de Buenos Aires',2,NOW()),
@@ -284,10 +284,15 @@ INSERT INTO proveedores(nombre,telefono,mail,web,contacto,direccion,provee,cread
 	('Arfix - Ingeniería en Fijación',1147622775,'ventas@arfix.com.ar','https://arfix.com.ar/','','Alferez Hipólito Bouchard 4590, B1605 Munro, Provincia de Buenos Aires',2,NOW()),
 	('Pintureria Saladillo',2344454280,'Pintureriasaladillo@yahoo.com.ar','https://www.facebook.com/people/Pinturer%C3%ADa-Saladillo/100057549943828/','','Saladillo 3347, Buenos Aires',2,NOW()),
 	('Ferreteria El Ciego',null,'','https://www.facebook.com/ferreteria.elciego','','Mariano Acosta 2355, Saladillo, Argentina, 7260',2,NOW()),
-	('Metalurgica MG',234415410667,'mg_metalurgica@outlook.com','https://www.facebook.com/metalurgicamgmiguelgonzalez/','','7260 Saladillo, Provincia de Buenos Aires, Argentina',2,NOW());
-	/*
-		('',,'',,'','',2,NOW()),
-	*/
+	('Metalurgica MG',234415410667,'mg_metalurgica@outlook.com','https://www.facebook.com/metalurgicamgmiguelgonzalez/','','7260 Saladillo, Provincia de Buenos Aires, Argentina',2,NOW()),
+	('Aceros Munro',1147612004,'','','','Virrey Olaguer y Feliú 5260 66, B1605BBN Munro, Provincia de Buenos Aires',2,NOW()),
+	('Joaquin Macagneo Pintura Epoxy',2345519072,'gestioneltaladro@gmail.com','https://www.eltaladro.com.ar/','Joaquin Macagneo','RN205 km 183,5, B7260 Saladillo, Provincia de Buenos Aires',2,NOW()),
+	('Bifreno Aluminio',1147090142,'ventas@biferno.com.ar','http://biferno.com.ar/','Silvia','Venezuela 4061, B1603BTS Villa Martelli, Provincia de Buenos Aires',2,NOW()),
+	('Aluminio Ilpem',1165213798,'consultas@ilpem.com.ar','http://ilpem.com.ar/','','Sto Domingo 2451, C1293 CABA',2,NOW()),
+	('Resistencias Caiponti',1161887244,'resistenciascaiponti@yahoo.com.ar','https://www.facebook.com/resistenciascaiponti','Hernan','Lomas de Zamora, Provincia de Buenos Aires, Argentina',2,NOW()),
+	('Ind. Metalurgicas Lander',1152403887,'','http://landersa.com.ar/','','Avenida Rivadavia 621, B1868ANH Gran Buenos Aires, Provincia de Buenos Aires',2,NOW()),
+	('Mcg Met Matriceria',1151389604,'info@mcgmet.com.ar','http://mcgmet.com.ar/','Guillermo','Boulogne - Sur Mer 1931 - Villa Maipu -San Martin',2,NOW()),
+	('Ale Pulidos Matricero',1127649312,'','','','',2,NOW());
 
 INSERT INTO mproducido(id_procedencia,tipo_molienda,tipo_plastico,cantidad,color,estado,fecha,creada_el) VALUES
 	(2,'gruesa','polietileno',185,'Blanco','molienda',null,NOW()),
