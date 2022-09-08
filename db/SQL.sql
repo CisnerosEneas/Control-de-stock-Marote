@@ -1,15 +1,25 @@
+/*
+	ADVERTENCIA
+	Ejecutar este script.sql hara que los datos y las tablas ingresadas en la base de datos sean eliminados, 
+	asegurese de migrarlos antes, del contrario estos seran borrados permanentemente.
+*/
+
+/*Seleccionamos la base de datos a usar*/
 use marote;
 
-drop table if exists mpcomprado;
-drop table if exists mocomprado;
-drop table if exists mproducido;
-drop table if exists mbruto;
-drop table if exists material;
-drop table if exists proveedores;
+/*Borrado de tablas que caso de su existencia en la base de datos*/
 drop table if exists productosalmacen;
 drop table if exists precioslista;
 drop table if exists preciosmayorista;
+drop table if exists detalle_pedido;
+drop table if exists pedidos;
 drop table if exists productos;
+drop table if exists mpcomprado;
+drop table if exists mocomprado;
+drop table if exists mproducido;
+drop table if exists proveedores;
+drop table if exists mbruto;
+drop table if exists material;
 drop table if exists cantmayorista;
 drop table if exists categoria;
 drop table if exists inyeccion;
@@ -17,7 +27,11 @@ drop table if exists rotomoldeo;
 drop table if exists triturado;
 drop table if exists produccion;
 
-/*proveedores*/
+/*
+	proveedores
+	Relaciones:
+		-Sin relaciones
+*/
 create table proveedores(
 	id_proveedor int unsigned auto_increment primary key,
 	nombre varchar(150) not null,
@@ -31,29 +45,46 @@ create table proveedores(
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-/*material*/
+/*
+	Material
+	Relaciones:
+		-Material
+		-Proveedores
+*/
 create table material(
 	id_procedencia int unsigned auto_increment primary key, /* primaria */
 	area varchar(30) not null
 );
 
-
+/*
+	Otros Mat. comprados Ej. Tornillos
+	Relaciones:
+		-Material
+		-Proveedores
+*/
 create table mocomprado(
-	id_compra int unsigned auto_increment primary key,
+	id_mocompra int unsigned auto_increment primary key,
 	id_procedencia int unsigned,
 	id_proveedor int unsigned,
 	material varchar(50) not null,
-	precio float(9) not null,
+	precio float(9),
 	cantidad int(4) not null,
 	fecha date,
+	codigo varchar(20),
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia),
 	foreign key (id_proveedor) references proveedores(id_proveedor)
 );
 
+/*
+	Material plastico comprado
+	Relaciones:
+		-Material
+		-Proveedores
+*/
 create table mpcomprado(
-	id_compra int unsigned auto_increment primary key,
+	id_mpcompra int unsigned auto_increment primary key,
 	id_procedencia int unsigned,
 	id_proveedor int unsigned,
 	estado varchar(40) not null,
@@ -62,12 +93,18 @@ create table mpcomprado(
 	precio float(9),
 	cantidad int(4) not null,
 	fecha date,
+	codigo varchar(20),
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia),
 	foreign key (id_proveedor) references proveedores(id_proveedor)
 );
 
+/*
+	Material plastico producido
+	Relaciones:
+		-Material
+*/
 create table mproducido(
 	id_producido int unsigned auto_increment primary key,
 	id_procedencia int unsigned,
@@ -76,12 +113,18 @@ create table mproducido(
 	cantidad float(9) not null,
 	color varchar(90) not null,
 	estado varchar(40) not null,
-	fecha date not null,
+	fecha date,
+	codigo varchar(20),
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia)
 );
 
+/*
+	Materia bruta Ej. Tacho de helado
+	Relaciones:
+		-Material
+*/
 create table mbruto(
 	id_materia int unsigned auto_increment primary key,
 	id_procedencia int unsigned,
@@ -89,17 +132,27 @@ create table mbruto(
 	color varchar(90) not null,
 	tipo_plastico varchar(50) not null,
 	cantidad float(9) not null,
+	codigo varchar(20),
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_procedencia) references material(id_procedencia)
 );
 
-/*produccion*/
+/*
+	Produccion
+	Relaciones:
+		-Sin relaciones
+*/
 create table produccion(
 	id_tipo_procesado int unsigned auto_increment primary key,/* primaria */
 	area varchar(30) not null
 );
 
+/*
+	Inyeccion
+	Relaciones:
+		-Produccion
+*/
 create table inyeccion(
 	id_inyeccion int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
@@ -113,6 +166,11 @@ create table inyeccion(
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
 );
 
+/*
+	Rotomoldeo
+	Relaciones:
+		-Produccion
+*/
 create table rotomoldeo(
 	id_rotomoldeo int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
@@ -126,6 +184,11 @@ create table rotomoldeo(
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
 );
 
+/*
+	Triturado
+	Relaciones:
+		-Produccion
+*/
 create table triturado(
 	id_triturado int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
@@ -138,12 +201,21 @@ create table triturado(
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado)
 );
 
-/* productos */
+/*
+	Productos
+	Relaciones:
+		-Sin relaciones
+*/
 create table categoria(
 	id_categoria int unsigned auto_increment primary key,
 	nombre_cat varchar(90) not null
 );
 
+/*
+	Cantidades para compras mayoristas
+	Relaciones:
+		-Sin relaciones
+*/
 create table cantmayorista(
 	id_cantmayorista int unsigned auto_increment primary key,
 	cantidad varchar(15),
@@ -151,17 +223,60 @@ create table cantmayorista(
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+/*
+	Productos
+	Relaciones:
+		-Produccion
+		-Categoria
+*/
 create table productos(
 	id_producto int unsigned auto_increment primary key,
 	id_tipo_procesado int unsigned,
 	id_categoria int unsigned,
 	nomproducto varchar(150) not null,
+	codigo varchar(20),
 	creada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   	actualizada_el TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	foreign key (id_tipo_procesado) references produccion(id_tipo_procesado),
 	foreign key (id_categoria) references categoria(id_categoria)
 );
 
+/*
+	Pedidos
+	Relaciones:
+		-Sin relaciones
+*/
+create table pedidos(
+	id_pedido int unsigned auto_increment primary key,
+	prioridad int unsigned not null,
+	nombre_cliente text(150) not null,
+	fecha_pedido date,
+	dia_de_entrega date,
+	fecha_entrega date,
+	direccion varchar(320) not null,
+	estado tinyint(1)
+);
+
+/*
+	Detalle de pedidos
+	Relaciones:
+		-Productos
+		-Pedidos
+*/
+create table detalle_pedido(
+	id_pedido_detalle int unsigned auto_increment primary key,
+	id_pedido int unsigned,
+	id_producto int unsigned,
+	detalle_pedido varchar(320),
+	foreign key (id_producto) references productos(id_producto),
+	foreign key (id_pedido) references pedidos(id_pedido)
+);
+
+/*
+	Precios de lista
+	Relaciones:
+		-Productos
+*/
 create table precioslista(
 	id_preciol int unsigned auto_increment primary key,
 	id_producto int unsigned,
@@ -169,6 +284,12 @@ create table precioslista(
 	foreign key (id_producto) references productos(id_producto)
 );
 
+/*
+	Precios para las cantidades mayoristas
+	Relaciones:
+		-Productos
+		-Cantmayorista
+*/
 create table preciosmayorista(
 	id_preciom int unsigned auto_increment primary key,
 	id_producto int unsigned,
@@ -178,10 +299,17 @@ create table preciosmayorista(
 	foreign key (id_cantmayorista) references cantmayorista(id_cantmayorista)
 );	
 
+/*
+	Productos/stock guardado/s en el almacen.
+	Relaciones:
+		-Categoria
+		-Productos
+*/
 create table productosalmacen(
 	id_stock int unsigned auto_increment primary key,
 	id_producto int unsigned,
 	id_categoria int unsigned,
+	codigo varchar(20),
 	nombre varchar(150) not null,
 	color varchar(90) not null,
 	stock_disponible int(4) not null,
@@ -192,21 +320,21 @@ create table productosalmacen(
   	foreign key (id_producto) references productos(id_producto)
 );
 
-/*inserts*/
-
-/*produccion*/
+/*Inserts*/
+/*Produccion*/
 insert into produccion(area) values
 	('Rotomoldeo'),
 	('Inyeccion'),
 	('Triturado'),
 	('Otro');
 
-/*material*/
+/*Material*/
 insert into material(area) values
 	('Comprado'),
 	('Producido'),
 	('Bruto');
 
+/*Categorias*/
 insert into categoria(nombre_cat) values
 	('Llaveros'),
 	('Contenedores'),
@@ -219,6 +347,7 @@ insert into categoria(nombre_cat) values
 	('Cestos'),
 	('Asientos');
 
+/*Cantidades compra mayorista*/
 insert into cantmayorista(cantidad) values
 	('5'),
 	('5 o mas'),
