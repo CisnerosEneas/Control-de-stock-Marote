@@ -3,31 +3,31 @@
 	<?php include "modulos/head.php" ?>
 	<body class="bg-dark text-white">
 		<?php include "modulos/navheader.php" ?>
-		<script type="text/javascript">
-			function mostrar(id)
-			{
-			    if (id == "rotomoldeo")
-			    {
-			        $("#rotomoldeo").show();
-			        $("#inyeccion").hide();
-			        $("#triturado").hide();
-			    }
+			<script type="text/javascript">
+				function mostrar(id)
+				{
+				    if (id == "rotomoldeo")
+				    {
+				        $("#rotomoldeo").show();
+				        $("#inyeccion").hide();
+				        $("#triturado").hide();
+				    }
 
-			    if (id == "inyeccion")
-			    {
-			        $("#rotomoldeo").hide();
-			        $("#inyeccion").show();
-			        $("#triturado").hide();
-			    }
+				    if (id == "inyeccion")
+				    {
+				        $("#rotomoldeo").hide();
+				        $("#inyeccion").show();
+				        $("#triturado").hide();
+				    }
 
-			    if (id == "triturado")
-			    {
-			        $("#rotomoldeo").hide();
-			        $("#inyeccion").hide();
-			        $("#triturado").show();
-			    }
-			}
-		</script>
+				    if (id == "triturado")
+				    {
+				        $("#rotomoldeo").hide();
+				        $("#inyeccion").hide();
+				        $("#triturado").show();
+				    }
+				}
+			</script>
 			<article class="col">
 				<center>
 					<form action="ingproduccion.php" method="post">

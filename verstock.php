@@ -18,49 +18,22 @@
 					<h2>Editar productos en stock</h2>
 					<form method="GET" action="editarstock.php">
 						<fieldset>
-							Producto
-							<select name="a" value="<?php echo $resultado_unico['id_producto']; ?>">
-								<option selected hidden disabled> Seleccione tipo de producto</option>
-								<?php
-									$sql_leer='SELECT * FROM productos';
-									$gsent = $cnn->prepare($sql_leer);
-									$gsent->execute();
-									$resultados = $gsent->fetchAll();
-								    foreach ($resultados as $dato): 
-								?>
-								<option value="<?php echo $dato['id_producto']; ?>"><?php echo $dato['nomproducto']; ?></option>
-								<?php endforeach; ?>
-							</select>
+							Codigo<input type="text" name="codigo" value="<?php echo $resultado_unico['codigo'] ?>">
 						</fieldset>
 						<fieldset>
-							Categoria
-							<select name="b" value="<?php echo $resultado_unico['id_categoria']; ?>">
-								<option selected hidden value="<?php echo $resultado_unico['id_categoria']; ?>" > Seleccione una categoria</option>
-								<?php
-									$leer_sql='SELECT * FROM categoria';
-									$gsent = $cnn->prepare($leer_sql);
-									$gsent->execute();
-									$resultaditos = $gsent->fetchAll();
-								    foreach ($resultaditos as $datito): 
-								?>
-								<option value="<?php echo $datito['id_categoria']; ?>"><?php echo $datito['nombre_cat']; ?></option>
-								<?php endforeach; ?>
-							</select>
+							Nombre<input type="text" name="name" value="<?php echo $resultado_unico['nombre'] ?>">
 						</fieldset>
 						<fieldset>
-							Nombre<input type="text" name="name" value="<?php echo $resultado_unico['nombre']?>">
+							Color<input type="text" name="color" value="<?php echo $resultado_unico['color'] ?>">
 						</fieldset>
 						<fieldset>
-							Color<input type="text" name="color" value="<?php echo $resultado_unico['color']?>">
+							Cantidad disp.<input type="number" name="stock" value="<?php echo $resultado_unico['stock_disponible'] ?>">
 						</fieldset>
 						<fieldset>
-							Cantidad disp.<input type="number" name="stock" value="<?php echo $resultado_unico['stock_disponible']?>">
+							Descripcion(opcional)<input type="text" name="descripcion" value="<?php echo $resultado_unico['descripcion'] ?>">
 						</fieldset>
 						<fieldset>
-							Descripcion(opcional)<input type="text" name="descripcion" value="<?php echo $resultado_unico['descripcion']?>">
-						</fieldset>
-						<fieldset>
-							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_stock']?>">
+							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_stock'] ?>">
 						</fieldset>
 						<fieldset>
 							<input type="submit">
@@ -68,7 +41,7 @@
 					</form>
 					<?php endif; ?>
 				</center>
-
+			</article>
 			<article class="col">
 				<center>
 					<h2>Productos stock</h2>
@@ -77,6 +50,7 @@
 					<thead>
 						<tr>
 							<th>Categoria</th>
+							<th>Codigo</th>
 							<th>Nombre</th>
 							<th>Color</th>
 							<th>Cantidad disp.</th>
@@ -133,6 +107,7 @@
 					    			}
 					    		?>
 					    	</td>
+					    	<td><?php echo $dato['codigo'] ?></td>
 						    <td><?php echo $dato['nombre']; ?></td>
 						    <td><?php echo $dato['color']; ?></td>
 						    <td><?php echo $dato['stock_disponible']; ?></td>

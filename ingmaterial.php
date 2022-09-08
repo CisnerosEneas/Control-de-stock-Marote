@@ -53,17 +53,21 @@
 						<option value="bruto">En bruto</option>
 					</select>
 
-					<!-- if comprado !-->
+					<!-- if comprado -->
 					<div id="comprado" style="display:none">
 						<select name="eleccion" id="eleccion" onChange="plasticouotro(this.value);">
 							<option selected hidden disabled>Seleccione tipo de mat. comprado</option>
 							<option value="plastico">Plastico</option>
 							<option value="otro">Otros</option>
 						</select>
+						<!-- if comprado=plastico -->
 						<div id="plastico" style="display:none;">
 							<form id="comprado" method="POST" action="subirmpcomprado.php">
 								<fieldset>
 									<h4>Ingresar plastico comprado</h4>
+								</fieldset>
+								<fieldset>
+									Codigo<input type="text" name="codigo">
 								</fieldset>
 								<fieldset>
 									Proveedor
@@ -101,7 +105,7 @@
 									</select>
 								</fieldset>
 								<fieldset>
-									color<input type="text" name="colorp">
+									Color<input type="text" name="colorp">
 								</fieldset>
 								<fieldset>
 									Precio $<input type="number" name="precio" step="0.01" min="0">
@@ -117,10 +121,14 @@
 								</fieldset>
 							</form>
 						</div>
+						<!-- if comprado=otros/insumos -->
 						<div id="otro" style="display:none;">
 							<form id="comprado" method="POST" action="subirmocomprado.php">
 								<fieldset>
 									<h4>Ingresar material comprado</h4>
+								</fieldset>
+								<fieldset>
+									Codigo<input type="text" name="codigo">
 								</fieldset>
 								<fieldset>
 									Proveedor
@@ -159,16 +167,19 @@
 						</div>
 					</div>
 
-					<!-- if producido !-->
+					<!-- if producido -->
 					<div id="producido" style="display:none">
 						<form id="producido" method="POST" action="subirmproducido.php">
 							<fieldset>
 								<h4>Ingresar material producido</h4>
 							</fieldset>
 							<fieldset>
+								Codigo<input type="text" name="codigo">
+							</fieldset>
+							<fieldset>
 								Tipo de molienda
 								<select name="molienda">
-									<option>Tipo de molienda</option>
+									<option selected hidden disabled>Tipo de molienda</option>
 									<option value="fina">Fina</option>
 									<option value="gruesa">Gruesa</option>
 								</select>
@@ -206,11 +217,14 @@
 						</form>
 					</div>
 
-					<!-- if En Bruto !-->
+					<!-- if En Bruto -->
 					<div id="bruto" style="display:none">
 						<form id="bruto" method="POST" action="subirmbruto.php">
 							<fieldset>
 								<h4>Ingresar material en bruto</h4>
+							</fieldset>
+							<fieldset>
+								Codigo<input type="text" name="codigo">
 							</fieldset>
 							<fieldset>
 								Forma<input type="text" name="forma">

@@ -48,6 +48,9 @@
 								Nombre<input type="text" name="nombre">
 							</fieldset>
 							<fieldset>
+								Codigo<input type="text" name="codigo">
+							</fieldset>
+							<fieldset>
 								Procesado
 								<select name="a">
 									<option selected hidden disabled>Seleccione tipo de procesado</option>
@@ -100,13 +103,13 @@
 								</select>
 							</fieldset>
 							<fieldset>
-								Precio L. <input type="number" name="preciol" step="0.01" min="0">
+								Precio Lista <input type="number" name="preciol" step="0.01" min="0">
 							</fieldset>
 							<fieldset>
-								Precio M. <input type="number" name="preciom" step="0.01" min="0">
+								Precio Corp y/o x Mayor <input type="number" name="preciom" step="0.01" min="0">
 							</fieldset>
 							<fieldset>
-								C. mayorista
+								Mayor/Corp. Minimo
 								<select name="c">
 									<option selected hidden disabled> Seleccione cantidad</option>
 									<?php
@@ -155,7 +158,7 @@
 								<select name="a" id="t_producto">
 									<option selected hidden disabled> Seleccione tipo de producto</option>
 									<?php
-										$sql_leer='SELECT distinct * FROM productos';
+										$sql_leer='SELECT distinct id_producto,nomproducto FROM productos';
 										$gsent = $cnn->prepare($sql_leer);
 										$gsent->execute();
 										$resultados = $gsent->fetchAll();
@@ -164,6 +167,9 @@
 									<option value="<?php echo $dato['id_producto']; ?>"><?php echo $dato['nomproducto']; ?></option>
 									<?php endforeach; ?>
 								</select>
+							</fieldset>
+							<fieldset>
+								Codigo<input type="text" name="codigo">
 							</fieldset>
 							<fieldset>
 								<div id="p_categoria">

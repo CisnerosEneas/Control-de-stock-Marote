@@ -15,38 +15,45 @@
 					}
 				?>
 				<?php if ($_GET): ?>
-				<form method="GET" action="editarmbruto.php">
-					<fieldset>
-						<h4>Editar material en bruto</h4>
-					</fieldset>
-					<fieldset>
-						Forma<input type="text" name="forma" value="<?php echo $resultado_unico['forma']?>">
-					</fieldset>
-					<fieldset>
-						Color<input type="text" name="color" value="<?php echo $resultado_unico['color']?>">
-					</fieldset>
-					<fieldset>
-						Tipo de plastico
-						<select name="tipo" value="<?php echo $resultado_unico['tipo_plastico']?>">
-							<option value="polietileno">Polietileno</option>
-							<option value="polipropileno">Polipropileno</option>
-						</select>
-					</fieldset>
-					<fieldset>
-						Cantidad<input type="number" name="cantidad" min="0" value="<?php echo $resultado_unico['cantidad']?>">
-					</fieldset>
-					<fieldset>
-						<input type="hidden" name="id" value="<?php echo $resultado_unico['id_materia']?>">
-					</fieldset>
-					<fieldset>
-						<input type="submit">
-					</fieldset>
-				</form>
+				<center>
+					<form method="GET" action="editarmbruto.php">
+						<fieldset>
+							<h4>Editar material en bruto</h4>
+						</fieldset>
+						<fieldset>
+							Codigo<input type="text" name="codigo" value="<?php echo $resultado_unico['codigo']?>">
+						</fieldset>
+						<fieldset>
+							Forma<input type="text" name="forma" value="<?php echo $resultado_unico['forma']?>">
+						</fieldset>
+						<fieldset>
+							Color<input type="text" name="color" value="<?php echo $resultado_unico['color']?>">
+						</fieldset>
+						<fieldset>
+							Tipo de plastico
+							<select name="tipo" value="<?php echo $resultado_unico['tipo_plastico']?>">
+								<option selected hidden disabled value="<?php echo $resultado_unico['tipo_plastico']?>"><?php echo $resultado_unico['tipo_plastico']?></option>
+								<option value="polietileno">Polietileno</option>
+								<option value="polipropileno">Polipropileno</option>
+							</select>
+						</fieldset>
+						<fieldset>
+							Cantidad<input type="number" name="cantidad" min="0" value="<?php echo $resultado_unico['cantidad']?>">
+						</fieldset>
+						<fieldset>
+							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_materia']?>">
+						</fieldset>
+						<fieldset>
+							<input type="submit">
+						</fieldset>
+					</form>
+				</center>
 				<?php endif ?>
 				<center><h2>Material bruto</h2></center>
 				<table class="col table-striped">
 					<thead>
 						<tr>
+							<th>Codigo</th>
 							<th>Forma del plastico</th>
 							<th>Color</th>
 							<th>Tipo de plastico</th>
@@ -65,6 +72,7 @@
 						    foreach ($resultados as $dato):
 						?>
 					    <tr>
+					    	<td><?php echo $dato['codigo']; ?></td>
 						    <td><?php echo $dato['forma']; ?></td>
 						    <td><?php echo $dato['color']; ?></td>
 						    <td><?php echo $dato['tipo_plastico']; ?></td>

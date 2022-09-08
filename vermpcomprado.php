@@ -9,7 +9,7 @@
 						include_once "db/conexion.php";
 						if($_GET) {
 					    $id=$_GET['id'];
-					    $sql_unico='SELECT * FROM mpcomprado WHERE id_compra=?';
+					    $sql_unico='SELECT * FROM mpcomprado WHERE id_mpcompra=?';
 					    $gsent_unico = $cnn->prepare($sql_unico);
 					    $gsent_unico->execute(array($id));
 					    $resultado_unico = $gsent_unico->fetch();
@@ -19,6 +19,9 @@
 					<form method="GET" action="editarmpcomprado.php">
 						<fieldset>
 							<h4>Editar plastico comprado</h4>
+						</fieldset>
+						<fieldset>
+							Codigo<input type="text" name="codigo" value="<?php echo $resultado_unico['codigo']?>">
 						</fieldset>
 						<fieldset>
 							Proveedor
@@ -55,7 +58,7 @@
 							</select>
 						</fieldset>
 						<fieldset>
-							color<input type="text" name="colorp" value="<?php echo $resultado_unico['color']?>">
+							Color<input type="text" name="colorp" value="<?php echo $resultado_unico['color']?>">
 						</fieldset>
 						<fieldset>
 							Precio $<input type="number" name="precio" step="0.01" min="0" value="<?php echo $resultado_unico['precio']?>">
@@ -67,7 +70,7 @@
 							Fecha de compra<input type="date" name="fecha" value="<?php echo $resultado_unico['fecha']?>">
 						</fieldset>
 						<fieldset>
-							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_compra']?>">
+							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_mpcompra']?>">
 						</fieldset>
 						<fieldset>
 							<input type="submit">
@@ -80,6 +83,7 @@
 					<thead>
 						<tr>
 							<th>Proveedor</th>
+							<th>Codigo</th>
 							<th>Estado</th>
 							<th>Tipo de plastico</th>
 							<th>Color</th>
@@ -93,7 +97,7 @@
 					<tbody>
 						<?php
 							include_once "db/conexion.php";
-							$sql_leer='SELECT id_compra,estado,tipo_plastico,color,precio,cantidad,fecha FROM mpcomprado';
+							$sql_leer='SELECT id_mpcompra,codigo,estado,tipo_plastico,color,precio,cantidad,fecha FROM mpcomprado';
 							$gsent = $cnn->prepare($sql_leer);
 							$gsent->execute();
 							$resultados = $gsent->fetchAll();
@@ -101,8 +105,7 @@
 						?>
 					    <tr>
 					    	<?php
-							include_once "db/conexion.php";
-								$sql_leer1="SELECT mpcomprado.id_compra, mpcomprado.id_proveedor, proveedores.nombre, proveedores.id_proveedor FROM mpcomprado,proveedores WHERE proveedores.id_proveedor=mpcomprado.id_proveedor and mpcomprado.id_compra='$dato[id_compra]'";
+								$sql_leer1="SELECT mpcomprado.id_mpcompra, mpcomprado.id_proveedor, proveedores.nombre, proveedores.id_proveedor FROM mpcomprado,proveedores WHERE proveedores.id_proveedor=mpcomprado.id_proveedor and mpcomprado.id_mpcompra='$dato[id_mpcompra]'";
 								$gsent1 = $cnn->prepare($sql_leer1);
 								$gsent1->execute();
 								$resultados1 = $gsent1->fetchAll();
@@ -116,6 +119,7 @@
 									echo '<td>Sin especificar</td>';
 								}
 							?>
+							<td><?php echo $dato['codigo']; ?></td>
 						    <td><?php echo $dato['estado']; ?></td>
 						    <td><?php echo $dato['tipo_plastico']; ?></td>
 						    <td><?php echo $dato['color']; ?></td>
@@ -144,8 +148,8 @@
 						    		}
 								?>
 							</td>
-						    <td><a href="vermpcomprado.php?id=<?php echo $dato['id_compra']; ?>"><i class="bi bi-pencil-square"></i></a></td>
-						    <td><a href="eliminarmpcomprado.php?id=<?php echo $dato['id_compra']; ?>" onclick="confirmar()"><i class="bi bi-trash"></i></a></td>
+						    <td><a href="vermpcomprado.php?id=<?php echo $dato['id_mpcompra']; ?>"><i class="bi bi-pencil-square"></i></a></td>
+						    <td><a href="eliminarmpcomprado.php?id=<?php echo $dato['id_mpcompra']; ?>" onclick="confirmar()"><i class="bi bi-trash"></i></a></td>
 					    </tr>
 						<?php
 							endforeach

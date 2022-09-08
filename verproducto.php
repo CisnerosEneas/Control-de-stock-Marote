@@ -29,8 +29,11 @@
 							Nombre<input type="text" name="nombre" value="<?php echo $resultado_producto['nomproducto']; ?>">
 						</fieldset>
 						<fieldset>
+							Codigo<input type="text" name="codigo" value="<?php echo $resultado_producto['codigo']; ?>">
+						</fieldset>
+						<fieldset>
 							Procesado
-							<select name="a">
+							<select name="a" value="<?php echo $resultado_producto['id_tipo_procesado']; ?>">
 								<option selected hidden disabled value="<?php echo $resultado_producto['id_tipo_procesado']; ?>">Seleccione tipo de procesado</option>
 								<option value="1">Rotomoldeo</option>
 								<option value="2">Inyeccion</option>
@@ -39,7 +42,7 @@
 						</fieldset>
 						<fieldset>
 							Categoria
-							<select name="b">
+							<select name="b" value="<?php echo $resultado_producto['id_categoria']; ?>">
 								<option selected hidden disabled value="<?php echo $resultado_producto['id_categoria']; ?>"> Seleccione una categoria</option>
 								<?php
 									include "db/conexion.php";
@@ -62,7 +65,7 @@
 						</fieldset>
 						<fieldset>
 							C. mayorista
-							<select name="c">
+							<select name="c" value="<?php echo $resultado_mayorista['id_cantmayorista']; ?>">
 								<option selected hidden disabled value="<?php echo $resultado_mayorista['id_cantmayorista']; ?>"> Seleccione cantidad</option>
 								<?php
 									$sql_leer='SELECT * FROM cantmayorista';
@@ -96,6 +99,7 @@
 					<thead>
 						<tr>
 							<th>Nombre</th>
+							<th>Codigo</th>
 							<th>Cargado</th>
 							<th>Actualizado</th>
 							<th>Editar</th>
@@ -112,8 +116,9 @@
 						    foreach ($resultadotes as $datote):
 						?>
 						<tr>
-							<!-- Link a la lista de precios del producto seleccionado !-->
+							<!-- Link a la lista de precios del producto seleccionado -->
 							<td><a href="verprecioproducto.php?id=<?php echo $datote['id_producto']; ?>"><?php echo $datote['nomproducto']; ?></a></td>
+							<td><?php echo $datote['codigo']; ?></td>
 						    <td><?php echo $datote['creada_el']; ?></td>
 						    <td>
 						    	<?php

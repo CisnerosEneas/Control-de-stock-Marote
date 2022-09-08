@@ -21,25 +21,30 @@
 							<h4>Editar material producido</h4>
 						</fieldset>
 						<fieldset>
+								Codigo<input type="text" name="codigo" value="<?php echo $resultado_unico['codigo'] ?>">
+							</fieldset>
+						<fieldset>
 							Tipo de molienda
-							<select name="molienda" value="<?php echo $resultado_unico['tipo_molienda']?>">
+							<select name="molienda" value="<?php echo $resultado_unico['tipo_molienda'] ?>">
+								<option value="<?php echo $resultado_unico['tipo_molienda'] ?>" selected disabled hidden><?php echo $resultado_unico['tipo_molienda'] ?></option>
 								<option value="fina">Fina</option>
 								<option value="gruesa">Gruesa</option>
 							</select>
 						</fieldset>
 						<fieldset>
 							Tipo de plastico
-							<select name="tipo" value="<?php echo $resultado_unico['tipo_plastico']?>">
-								<option value="1">1</option>
-								<option value="2">2</option>
+							<select name="tipo" value="<?php echo $resultado_unico['tipo_plastico'] ?>">
+								<option value="<?php echo $resultado_unico['tipo_plastico'] ?>" selected disabled hidden><?php echo $resultado_unico['tipo_plastico'] ?></option>
+								<option value="polietileno">Polietileno</option>
+								<option value="polipropileno">Polipropileno</option>
 							</select>
 						</fieldset>
 						<fieldset>
-							Cantidad<input type="number" name="cantidad" min="0" value="<?php echo $resultado_unico['cantidad']?>">
+							Cantidad<input type="number" name="cantidad" min="0" value="<?php echo $resultado_unico['cantidad'] ?>">
 						</fieldset>
 						<fieldset>
 							Estado
-							<select name="estado" value="<?php echo $resultado_unico['estado']?>">
+							<select name="estado" value="<?php echo $resultado_unico['estado'] ?>">
 								<option value="pellets">Pellets</option>
 								<option value="molienda">Molienda</option>
 								<option value="polvo">Polvo</option>
@@ -47,10 +52,10 @@
 							</select>
 						</fieldset>
 						<fieldset>
-							Fecha de produccion<input type="date" name="fecha" value="<?php echo $resultado_unico['id_producido']?>">
+							Fecha de produccion<input type="date" name="fecha" value="<?php echo $resultado_unico['fecha'] ?>">
 						</fieldset>
 						<fieldset>
-							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_producido']?>">
+							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_producido'] ?>">
 						</fieldset>
 						<fieldset>
 							<input type="submit">
@@ -63,6 +68,7 @@
 					<thead>
 						<tr>
 							<th>Tipo de molienda</th>
+							<th>Codigo</th>
 							<th>Tipo de plastico</th>
 							<th>Cantidad (KG)</th>
 							<th>Estado</th>
@@ -83,13 +89,14 @@
 						?>
 					    <tr>
 						    <td><?php echo $dato['tipo_molienda']; ?></td>
+						    <td><?php echo $dato['codigo']; ?></td>
 						    <td><?php echo $dato['tipo_plastico']; ?></td>
 						    <td><?php echo $dato['cantidad']; ?></td>
 						    <td><?php echo $dato['estado']; ?></td>
 						    <td><?php echo $dato['color']; ?></td>
 						    <td>
 						    	<?php
-						    		if($dato['fecha']!="0000-00-00")
+						    		if($dato['fecha']!=null)
 						    		{
 						    			echo $dato['fecha'];
 						    		}
