@@ -78,6 +78,7 @@
 					</form>
 					<?php endif ?>
 					<h2>Plastico comprado</h2>
+				<button onclick="window.print()">Imprimir</button>
 				</center>
 				<table class="col table-striped">
 					<thead>

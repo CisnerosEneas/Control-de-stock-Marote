@@ -42,85 +42,206 @@
 					</form>
 
 					<!-- if Triturado !-->
-					<div id="triturado" style="display:none">
+					<div id="triturado" style="display:none" align="left">
 						<form id="triturado" method="POST" action="subirtriturado.php">
 							<fieldset>
-								<h4>Ingresar triturado</h4>
-							</fieldset>
-							<fieldset>
-								Cantidad<input type="number" name="cantidad" step="0.001" min="0.01">
-							</fieldset>
-							<fieldset>
-								Tipo de plastico
-								<select name="a">
+								<legend>Ingresar triturado</legend>
+								<p>Cantidad:<br><input type="number" name="cantidad" step="0.001" min="0.01">
+
+								<p>Tipo de plastico:<br><select name="a">
 									<option hidden disabled selected>Tipo de plastico</option>
 									<option value="polietileno">Polietileno</option>
 									<option value="polipropileno">Polipropileno</option>
 								</select>
-							</fieldset>
-							<fieldset>
-								Color<input type="text" name="color">
-							<fieldset>
-								Fecha de molienda<input type="date" name="fecha">
-							</fieldset>
-							<fieldset>
-								<input type="submit">
+
+								<p>Color:<br><input type="text" name="color">
+								
+								<p>Fecha de molienda:<br><input type="date" name="fecha">
+
+								<p><input type="submit">
 							</fieldset>
 						</form>
 					</div>
 
 					<!-- if Inyeccion !-->
-					<div id="inyeccion" style="display:none;">
+					<div id="inyeccion" style="display:none;" align="left">
 						<form id="inyeccion" method="POST" action="subirinyeccion.php">
 							<fieldset>
-								<h4>Ingresar inyeccion</h4>
-							</fieldset>
-							<fieldset>
-								Molde usado<input type="text" name="molde">
-							</fieldset>
-							<fieldset>
-								Duracion del proceso<input type="time" name="duracion">
-							</fieldset>
-							<fieldset>
-								Cantidad creada<input type="number" name="cantidad">
-							</fieldset>
-							<fieldset>
-								Fecha de produccion<input type="date" name="fecha">
-							</fieldset>
-							<fieldset>
-								Procentajes utilizados<input type="text" name="porcentajes">
-							</fieldset>
-							<fieldset>
-								<input type="submit">
+								<p><legend>Ingresar inyeccion</legend>
+			
+								<p>Molde usado:<br><input type="text" name="molde">
+							
+								<p>Duracion del proceso:<br><input type="time" name="duracion">
+							
+								<p>Cantidad creada:<br><input type="number" name="cantidad">
+							
+								<p>Fecha de produccion:<br><input type="date" name="fecha">
+							
+								<p>Material 1:<br><select name="material1">
+											<option selected hidden disabled>Material</option>
+											<?php
+												include "db/conexion.php";
+												$sql_leer='SELECT codigo FROM mpcomprado
+												UNION
+												SELECT codigo FROM mocomprado
+												UNION
+												SELECT codigo FROM mproducido
+												UNION
+												SELECT codigo FROM mbruto;';
+
+												$gsent = $cnn->prepare($sql_leer);
+												$gsent->execute();
+												$resultados = $gsent->fetchAll();
+											    foreach ($resultados as $dato): 
+
+											?>
+											<option value="<?php echo $dato['codigo']; ?>"><?php echo $dato['codigo']; ?></option>
+											<?php endforeach; ?>
+										</select>
+									
+									<p>Cantidad Material 1:<br><input type="number" min="0" name="cm1"> gr.
+									
+									<p>Material 2:<br><select name="material2">
+											<option value="-" selected>-</option>
+											<?php
+												include "db/conexion.php";
+												$sql_leer='SELECT codigo FROM mpcomprado
+												UNION
+												SELECT codigo FROM mocomprado
+												UNION
+												SELECT codigo FROM mproducido
+												UNION
+												SELECT codigo FROM mbruto;';
+
+												$gsent = $cnn->prepare($sql_leer);
+												$gsent->execute();
+												$resultados = $gsent->fetchAll();
+											    foreach ($resultados as $dato): 
+
+											?>
+											<option value="<?php echo $dato['codigo']; ?>"><?php echo $dato['codigo']; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<p>Cantidad Material 2:<br><input type="number" min="0" name="cm2"> gr.
+										<br>
+
+										<p>Material 3:<br><select name="material3">
+											<option value="-" selected>-</option>
+											<?php
+												include "db/conexion.php";
+												$sql_leer='SELECT codigo FROM mpcomprado
+												UNION
+												SELECT codigo FROM mocomprado
+												UNION
+												SELECT codigo FROM mproducido
+												UNION
+												SELECT codigo FROM mbruto;';
+
+												$gsent = $cnn->prepare($sql_leer);
+												$gsent->execute();
+												$resultados = $gsent->fetchAll();
+											    foreach ($resultados as $dato): 
+
+											?>
+											<option value="<?php echo $dato['codigo']; ?>"><?php echo $dato['codigo']; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<p>Cantidad Material 3:<br><input type="number" min="0" name="cm3"> gr.
+
+							
+								<p><input type="submit">
 							</fieldset>
 						</form>
 					</div>
 
 					<!-- if En Rotomoldeo !-->
-					<div id="rotomoldeo" style="display:none;">
-						<form id="rotomoldeo" method="POST" action="subirrotomoldeo.php">
-							<fieldset>
-								<h4>Ingresar rotomoldeo</h4>
-							</fieldset>
-							<fieldset>
-								Molde usado<input type="text" name="molde">
-							</fieldset>
-							<fieldset>
-								Duracion del proceso<input type="time" name="duracion">
-							</fieldset>
-							<fieldset>
-								Cantidad creada<input type="number" name="cantidad">
-							</fieldset>
-							<fieldset>
-								Fecha de produccion<input type="date" name="fecha">
-							</fieldset>
-							<fieldset>
-								Procentajes utilizados<input type="text" name="porcentajes">
-							</fieldset>
-							<fieldset>
-								<input type="submit">
-							</fieldset>
-						</form>
+					<div id="rotomoldeo" style="display:none;" align="left">
+							<form id="rotomoldeo" method="POST" action="subirrotomoldeo.php">
+								<fieldset>
+									
+									<p><legend>Ingresar rotomoldeo</legend>
+									
+									<p>Molde usado:<br><input type="text" name="molde">
+									
+									<p>Duracion del proceso:<br><input type="time" name="duracion">
+									
+									<p>Cantidad creada:<br><input type="number" name="cantidad">
+									
+									<p>Fecha de produccion:<br><input type="date" name="fecha">
+									
+									<p>Material 1:<br><select name="material1">
+											<option selected hidden disabled>Material</option>
+											<?php
+												include "db/conexion.php";
+												$sql_leer='SELECT codigo FROM mpcomprado
+												UNION
+												SELECT codigo FROM mocomprado
+												UNION
+												SELECT codigo FROM mproducido
+												UNION
+												SELECT codigo FROM mbruto;';
+
+												$gsent = $cnn->prepare($sql_leer);
+												$gsent->execute();
+												$resultados = $gsent->fetchAll();
+											    foreach ($resultados as $dato): 
+
+											?>
+											<option value="<?php echo $dato['codigo']; ?>"><?php echo $dato['codigo']; ?></option>
+											<?php endforeach; ?>
+										</select>
+									
+									<p>Cantidad Material 1:<br><input type="number" min="0" name="cm1"> gr.
+									
+									<p>Material 2:<br><select name="material2">
+											<option value="-" selected>-</option>
+											<?php
+												include "db/conexion.php";
+												$sql_leer='SELECT codigo FROM mpcomprado
+												UNION
+												SELECT codigo FROM mocomprado
+												UNION
+												SELECT codigo FROM mproducido
+												UNION
+												SELECT codigo FROM mbruto;';
+												$gsent = $cnn->prepare($sql_leer);
+												$gsent->execute();
+												$resultados = $gsent->fetchAll();
+											    foreach ($resultados as $dato): 
+
+											?>
+											<option value="<?php echo $dato['codigo']; ?>"><?php echo $dato['codigo']; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<p>Cantidad Material 2:<br><input type="number" min="0" name="cm2"> gr.
+										<br>
+
+										<p>Material 3:<br><select name="material3">
+											<option value="-" selected>-</option>
+											<?php
+												include "db/conexion.php";
+												$sql_leer='SELECT codigo FROM mpcomprado
+												UNION
+												SELECT codigo FROM mocomprado
+												UNION
+												SELECT codigo FROM mproducido
+												UNION
+												SELECT codigo FROM mbruto;';
+												$gsent = $cnn->prepare($sql_leer);
+												$gsent->execute();
+												$resultados = $gsent->fetchAll();
+											    foreach ($resultados as $dato): 
+
+											?>
+											<option value="<?php echo $dato['codigo']; ?>"><?php echo $dato['codigo']; ?></option>
+											<?php endforeach; ?>
+										</select>
+									<p>Cantidad Material 3:<br><input type="number" min="0" name="cm3"> gr.
+
+
+								<p><input type="submit">
+								</fieldset>
+							</form>
 					</div>
 				</center>
 			</article>

@@ -9,14 +9,14 @@
 						include_once "db/conexion.php";
 						if($_GET) {
 					    $id=$_GET['id'];
-					    $sql_unico='SELECT * FROM mocompradodo WHERE id_mocompra=?';
+					    $sql_unico='SELECT * FROM mocomprado WHERE id_mocompra=?';
 					    $gsent_unico = $cnn->prepare($sql_unico);
 					    $gsent_unico->execute(array($id));
 					    $resultado_unico = $gsent_unico->fetch();
 						}
 					?>
 					<?php if ($_GET): ?>
-					<form method="GET" action="editarmocompradodo.php">
+					<form method="GET" action="editarmocomprado.php">
 						<fieldset>
 							<h4>Editar material comprado</h4>
 						</fieldset>
@@ -48,7 +48,7 @@
 							Precio $<input type="number" name="precio" step="0.01" min="0" value="<?php echo $resultado_unico['precio'] ?>">
 						</fieldset>
 						<fieldset>
-							Cantidad<input type="number" name="cantidad" min="0" value="<?php echo $resultado_unico['cantidad'] ?>">
+							Cantidad <input type="number" name="cantidad" min="0" value="<?php echo $resultado_unico['cantidad'] ?>">
 						</fieldset>
 						<fieldset>
 							Fecha de compra<input type="date" name="fecha" value="<?php echo $resultado_unico['fecha'] ?>">
@@ -62,6 +62,7 @@
 					</form>
 					<?php endif ?>
 					<h2>Insumos comprados</h2>
+					<button onclick="window.print()">Imprimir</button>
 				</center>
 				<table class="col table-striped">
 					<thead>
@@ -106,8 +107,8 @@
 						    <td>$<?php echo $dato['precio']; ?></td>
 						    <td><?php echo $dato['cantidad']; ?></td>
 						    <td><?php echo $dato['fecha']; ?></td>
-						    <td><a href="vermocompradodo.php?id=<?php echo $dato['id_mocompra']; ?>"><i class="bi bi-pencil-square"></i></a></td>
-						    <td><a href="eliminarmocompradodo.php?id=<?php echo $dato['id_mocompra']; ?>" onclick="confirmar()"><i class="bi bi-trash"></i></a></td>
+						    <td><a href="vermocomprado.php?id=<?php echo $dato['id_mocompra']; ?>"><i class="bi bi-pencil-square"></i></a></td>
+						    <td><a href="eliminarmocomprado.php?id=<?php echo $dato['id_mocompra']; ?>" onclick="confirmar()"><i class="bi bi-trash"></i></a></td>
 					    </tr>
 						<?php
 							endforeach;

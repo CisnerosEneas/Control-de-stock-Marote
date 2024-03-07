@@ -23,6 +23,7 @@
 					<thead>
 						<tr>
 							<th>Prioridad</th>
+							<th>Nombre de pedido</th>
 							<th>Nombre del cliente</th>
 							<th>Fecha de pedido</th>
 							<th>Dia limite pedido</th>
@@ -44,10 +45,11 @@
 						?>
 					    <tr>
 				    		<td><?php echo $dato['prioridad']; ?></td>
+							<td><?php echo $dato['nombre_pedido']; ?></td>
 				    		<td><?php echo $dato['nombre_cliente']; ?></td>
-				    		<td><?php echo $dato['fecha_pedido']; ?></td>
-				    		<td><?php echo $dato['dia_de_entrega']; ?></td>
-				    		<td><?php echo $dato['fecha_entrega']; ?></td>
+				    		<td><?php echo $dato['fechapedido']; ?></td>
+				    		<td><?php echo $dato['diaentrega']; ?></td>
+				    		<td><?php echo $dato['fechalimite']; ?></td>
 				    		<td><?php echo $dato['direccion']; ?></td>
 					    	<td><a href="verdetalle.php?id=<?php echo $dato['id_pedido']; ?>"><i class="bi bi-eye-fill"></i></a></td>
 						    <td><a href="verpedido.php?id=<?php echo $dato['id_pedido']; ?>"><i class="bi bi-pencil-square"></i></a></td>

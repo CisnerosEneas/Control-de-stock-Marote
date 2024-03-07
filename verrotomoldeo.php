@@ -33,7 +33,13 @@
 							Fecha de produccion<input type="date" name="fecha" value="<?php echo $resultado_unico['fecha']?>">
 						</fieldset>
 						<fieldset>
-							Procentajes utilizados<input type="text" name="material_utilizado" value="<?php echo $resultado_unico['material_utilizado']?>">
+							Material 1<input type="text" name="material1" value="<?php echo $resultado_unico['material1']?>">
+						</fieldset>
+						<fieldset>
+							Material 2<input type="text" name="material2" value="<?php echo $resultado_unico['material2']?>">
+						</fieldset>
+						<fieldset>
+							Material 3<input type="text" name="material3" value="<?php echo $resultado_unico['material3']?>">
 						</fieldset>
 						<fieldset>
 							<input type="hidden" name="id" value="<?php echo $resultado_unico['id_rotomoldeo']?>">
@@ -43,7 +49,8 @@
 						</fieldset>
 					</form>
 					<?php endif ?>
-					<h2>Rotomoldeo</h2>
+					<h2>Rotomoldeo</h2><br>
+				<button onclick="window.print()">Imprimir</button>
 				</center>
 				<table class="col table-striped">
 					<thead>
@@ -52,7 +59,12 @@
 							<th>Duracion del proceso</th>
 							<th>Cantidad creada</th>
 							<th>Fecha (A/M/D)</th>
-							<th>Porcentajes de material utilizado</th>
+							<th>Material 1</th>
+							<th>Cantidad Material 1</th>
+							<th>Material 2</th>
+							<th>Cantidad Material 2</th>
+							<th>Material 3</th>
+							<th>Cantidad Material 3</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
 						</tr>
@@ -71,7 +83,12 @@
 						    <td>Hrs: <?php echo $dato['duracion']; ?></td>
 						    <td><?php echo $dato['cantidad']; ?></td>
 						    <td><?php echo $dato['fecha']; ?></td>
-						    <td><?php echo $dato['material_utilizado']; ?></td>
+						    <td><?php echo $dato['material1']; ?></td>
+						    <td><?php echo $dato['cm1']; ?></td>
+						    <td><?php echo $dato['material2']; ?></td>
+						    <td><?php echo $dato['cm2']; ?></td>
+						    <td><?php echo $dato['material3']; ?></td>
+						    <td><?php echo $dato['cm3']; ?></td>
 						    <td><a href="verrotomoldeo.php?id=<?php echo $dato['id_rotomoldeo']; ?>"><i class="bi bi-pencil-square"></i></a></td>
 						    <td><a href="eliminarrotomoldeo.php?id=<?php echo $dato['id_rotomoldeo']; ?>"><i class="bi bi-trash"></i></a></td>
 					    </tr>

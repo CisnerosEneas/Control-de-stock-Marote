@@ -49,7 +49,9 @@
 					</form>
 				</center>
 				<?php endif ?>
-				<center><h2>Material bruto</h2></center>
+				<center><h2>Material bruto</h2>
+				<button onclick="window.print()">Imprimir</button>
+				</center>
 				<table class="col table-striped">
 					<thead>
 						<tr>

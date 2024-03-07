@@ -52,7 +52,12 @@
 							<th>Duracion del proceso</th>
 							<th>Cantidad creada</th>
 							<th>Fecha (A/M/D)</th>
-							<th>Porcentajes de material utilizado</th>
+							<th>Material 1</th>
+							<th>Cantidad Material 1</th>
+							<th>Material 2</th>
+							<th>Cantidad Material 2</th>
+							<th>Material 3</th>
+							<th>Cantidad Material 3</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
 						</tr>
@@ -71,7 +76,12 @@
 						    <td>Hrs: <?php echo $dato['duracion']; ?></td>
 						    <td><?php echo $dato['cantidad']; ?></td>
 						    <td><?php echo $dato['fecha']; ?></td>
-						    <td><?php echo $dato['material_utilizado']; ?></td>
+						    <td><?php echo $dato['material1']; ?></td>
+						    <td><?php echo $dato['cm1']; ?></td>
+						    <td><?php echo $dato['material2']; ?></td>
+						    <td><?php echo $dato['cm2']; ?></td>
+						    <td><?php echo $dato['material3']; ?></td>
+						    <td><?php echo $dato['cm3']; ?></td>
 						    <td><a href="verinyeccion.php?id=<?php; ?>&id=<?php echo $dato['id_inyeccion']; ?>"><i class="bi bi-pencil-square"></i></a></td>
 						    <td><a href="eliminarinyeccion.php?id=<?php echo $dato['id_inyeccion']; ?>"><i class="bi bi-trash"></i></a></td>
 					    </tr>
